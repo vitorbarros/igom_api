@@ -23,27 +23,11 @@ var Providers = mongoose.Schema({
             message: '{VALUE} is not a valid email address'
         }
     },
-    companyName: {
-        type: String,
-        required: false
-    },
-    shortName: {
-        type: String,
-        required: false
-    },
     cpf: {
         type: String,
         required: false
     },
-    cnpj: {
-        type: String,
-        required: false
-    },
     address: {
-        type: Array,
-        required: false
-    },
-    providerType: {
         type: Array,
         required: false
     },
@@ -106,10 +90,6 @@ var Providers = mongoose.Schema({
             message: '{VALUE} is not a valid cel number'
         }
     },
-    crmv: {
-        type: String,
-        required: false
-    },
     bankAccount: {
         type: Object,
         required: false
@@ -119,134 +99,13 @@ var Providers = mongoose.Schema({
         required: true,
         index: 1
     },
-    useTerms: {
-        type: Number,
-        required: false
-    },
-    generalResponsibilityTerms: {
-        type: Number,
-        required: false
-    },
-    stepOne: {
-        type: Number,
-        required: false
-    },
-    stepTwo: {
-        type: Number,
-        required: false
-    },
-    stepThree: {
-        type: Number,
-        required: false
-    },
-    stepFour: {
-        type: Number,
-        required: false
-    },
-    stepFive: {
-        type: Number,
-        required: false
-    },
-    stepSix: {
-        type: Number,
-        required: false
-    },
-    stepSeven: {
-        type: Number,
-        required: false
-    },
-    deliveryCar: {
-        type: Number,
-        required: false,
-        index: 1
-    },
-    smart: {
-        type: Number,
-        required: false,
-        index: 1,
-        default: 1
-    },
-    withdrawInStore: {
-        type: Number,
-        required: false,
-        index: 1
-    },
-    deliveryCarValue: {
-        type: Array,
-        required: false
-    },
-    serviceInformation: {
-        type: Object,
-        required: false
-    },
-    serviceReportInformation: {
-        type: Array,
-        required: false
-    },
-    productReportInformation: {
-        type: Array,
-        required: false
-    },
     //imgs fields
     profile: {
         type: String,
         required: false
     },
-    page: {
-        type: String,
-        required: false
-    },
-    profileDescription: {
-        type: String,
-        required: false
-    },
-    gallery: {
-        type: Array,
-        required: false
-    },
-    generalInformation: {
-        type: Array,
-        required: false
-    },
-    obs: {
-        type: Array,
-        required: false
-    },
-    loc: {
-        type: [Number],
-        index: '2d'
-    },
-    vendor: {
-        type: Number,
-        index: 1,
-        required: false
-    },
-    fullRegisterNotification: {
-        type: Number,
-        index: 1,
-        require: true,
-        default: 0
-    },
-    dotNotification: {
-        type: Number,
-        index: 1,
-        require: true,
-        default: 0
-    },
-    businessHours: {
-        type: Array,
-        required: false
-    },
     activationAt: {
         type: Date,
-        required: false
-    },
-    distance: {
-        type: String,
-        required: false
-    },
-    productsStockNotification: {
-        type: [Date],
         required: false
     }
 });

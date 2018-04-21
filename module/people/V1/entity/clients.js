@@ -11,10 +11,6 @@ var Clients = mongoose.Schema({
         type: String,
         required: true
     },
-    nickName: {
-        type: String,
-        required: true
-    },
     email: {
         type: String,
         required: true,
@@ -26,11 +22,6 @@ var Clients = mongoose.Schema({
             },
             message: '{VALUE} is not a valid email address'
         }
-    },
-    emailActive: {
-        type: Number,
-        required: true,
-        default: 0
     },
     tel: {
         type: String,
@@ -82,15 +73,6 @@ var Clients = mongoose.Schema({
         type: Date,
         required: true
     },
-    expireFB: {
-        type: Date,
-        required: false
-    },
-    pinCode: {
-        type: String,
-        required: true,
-        unique: true
-    },
     activationCode: {
         type: String,
         required: true
@@ -113,71 +95,13 @@ var Clients = mongoose.Schema({
         type: Array,
         required: false
     },
-    pets: {
-        type: Array,
-        required: false
-    },
     status: {
         type: Number,
         required: true,
         index: 1
     },
-    multiplus: {
-        type: Number,
-        required: false,
-        index: 1
-    },
-    isFB: {
-        type: Number,
-        required: false
-    },
-    isGPlus: {
-        type: Number,
-        required: false
-    },
-    devices: {
-        type: Array,
-        required: false
-    },
     photo: {
         type: String,
-        required: false
-    },
-    favorites: {
-        type: Array,
-        required: false
-    },
-    notificationEstablishments: {
-        type: Number,
-        required: true,
-        default: 1
-    },
-    notificationOrder: {
-        type: Number,
-        required: true,
-        default: 1
-    },
-    notificationPromotions: {
-        type: Number,
-        required: true,
-        default: 1
-    },
-    notificationGeneral: {
-        type: Number,
-        required: true,
-        default: 1
-    },
-    notificationNews: {
-        type: Number,
-        required: true,
-        default: 1
-    },
-    productsToAlert: {
-        type: Array,
-        required: false
-    },
-    dotCredit: {
-        type: Number,
         required: false
     },
     activationAt: {
@@ -187,12 +111,6 @@ var Clients = mongoose.Schema({
     origin: {
         type: String,
         required: false
-    },
-    campaign: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Campaigns',
-        required: false,
-        index: 1
     }
 });
 

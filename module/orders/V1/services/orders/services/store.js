@@ -978,7 +978,7 @@ ServiceStoreOrder.prototype.storeOrderCaptureValue = function (postData, totalVa
 
         } else {
 
-            var cielo = require('./../../../../../cielo');
+            var cielo = require('nodejs-cielo');
             var request = new cielo();
 
             var config = require('./../../../../../../config/cielo');
