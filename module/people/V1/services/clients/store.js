@@ -49,18 +49,6 @@ var Service = function (req, res) {
     Service.prototype.createClient(req.body)
         .then(function (client) {
 
-            //enviando os dados para a RdStation
-            var objRdStation = {
-                identificador: "cadastro-usuario",
-                email: client.email,
-                celular: client.tel,
-                name: client.name
-            };
-
-            var RdStarion = require('./../../../../rdStation/V1/services/store');
-            var rdObject = new RdStarion(objRdStation);
-            rdObject.dispatch();
-
             return res.status(200).json({
                 success: true,
                 data: client
@@ -143,42 +131,7 @@ Service.prototype.createClient = function (body) {
 
                 clientRepository.create(body)
                     .then(function (client) {
-
-                        //enviando notificação do código de acesso por SMS
-                        var sms = require('./../../../../sms/V1/services/dispatch/dispatchInternal');
-                        var send = new sms();
-                        send.prepare(body.tel, "Seja bem-vindo a Dot Pet, Esse e seu codigo de ativacao: " + client.activationCode);
-                        send.dispatch(function (success, error) {
-
-                            client.password = '';
-
-                            if (error) {
-                                reject(error);
-                            } else {
-
-                                var name = client.name.toString().split(" ");
-
-                                Service.prototype.sendEmail({
-                                    mail: {
-                                        to: client.email, // list of receivers
-                                        subject: 'Código de ativação',
-                                        text: '',
-                                        html: '',
-                                        fromName: "Dot Pet"
-                                    },
-                                    userData: {
-                                        name: name[0],
-                                        activationCode: client.activationCode
-                                    }
-                                }, function (successSent, err) {
-                                    if (successSent) {
-                                        resolve(client);
-                                    } else {
-                                        reject(err);
-                                    }
-                                });
-                            }
-                        });
+                        resolve(client);
                     })
                     .catch(function (err) {
                         reject(err);
@@ -190,38 +143,6 @@ Service.prototype.createClient = function (body) {
                     entity: duplicated
                 });
             });
-    });
-};
-
-/**
- * @desc Função que faz o envio de e-mail
- * @param data
- * @param __callback
- */
-Service.prototype.sendEmail = function (data, __callback) {
-
-    var fs = require('fs');
-    var path = require('path');
-    var folder = path.resolve(__dirname);
-
-    var Mail = require('./../../../../mail/V1/services/send');
-    var mail = new Mail();
-
-    var template = folder + '/../../../../mail/V1/templates/activationCode.html';
-    var file = fs.createReadStream(template, 'utf8');
-    var templateParsed = '';
-
-    file.on('data', function (chunk) {
-
-        templateParsed += chunk.toString().replace('[name]', data.userData.name).replace('[activationCode]', data.userData.activationCode);
-
-        data.mail.html = templateParsed;
-        data.mail.text = templateParsed;
-
-        mail.setMailOptions(data.mail);
-        mail.send();
-
-        __callback(true, null);
     });
 };
 

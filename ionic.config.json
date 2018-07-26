@@ -1,0 +1,14 @@
+{
+  "name": "demo",
+  "app_id": "",
+  "proxies": [
+    {
+      "path": "/service",
+      "proxyUrl": "https://igom-api.herokuapp.com"
+    }
+  ],
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
