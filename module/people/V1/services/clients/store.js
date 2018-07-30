@@ -44,7 +44,7 @@ var Service = function (req, res) {
     //defininfo o email como nome de usuário
     req.body.email = req.body.email.toLowerCase();
     req.body.username = req.body.email;
-    req.body.status = 0;
+    req.body.status = 1;
 
     Service.prototype.createClient(req.body)
         .then(function (client) {
